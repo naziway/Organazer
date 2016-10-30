@@ -8,6 +8,7 @@ namespace OrganazerLibrary
         List<Taska> GetTaskasForDay(DayOfWeek dayOfWeek);
         List<Taska> GetTaskasForSubject(int idSubject);
         List<Subject> GetAllSubjects();
-        List<Subject> GetScheduleInDay();
+        List<Schedule> GetScheduleInDay(DayOfWeek dayOfWeek);
+        List<Subject> GetSubjectsForId(int idSubject);
     }
 }
