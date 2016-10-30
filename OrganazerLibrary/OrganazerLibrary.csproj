@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StatusTaska.cs" />
+    <Compile Include="DayOfWeek.cs" />
+    <Compile Include="DbContract.cs" />
     <Compile Include="OrganazerData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,9 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OrganazerData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Schedule.cs" />
     <Compile Include="ScheduleDb.cs">
       <DependentUpon>OrganazerData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Subject.cs" />
     <Compile Include="SubjectDb.cs">
       <DependentUpon>OrganazerData.tt</DependentUpon>
     </Compile>
