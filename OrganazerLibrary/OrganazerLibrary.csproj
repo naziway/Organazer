@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IContract.cs" />
     <Compile Include="StatusTaska.cs" />
     <Compile Include="DayOfWeek.cs" />
     <Compile Include="DbContract.cs" />
