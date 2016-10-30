@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OrganazerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ScheduleDb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="dayOfWeek" Type="int" Nullable="false" />
+          <Property Name="idSubject" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectDb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskaDb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="attachmensFiles" Type="nchar" MaxLength="400" Nullable="false" />
+          <Property Name="idSubject" Type="int" Nullable="false" />
+          <Property Name="dataFinish" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ScheduleDb_ToSubjectDb">
+          <End Role="SubjectDb" Type="Self.SubjectDb" Multiplicity="1" />
+          <End Role="ScheduleDb" Type="Self.ScheduleDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectDb">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheduleDb">
+              <PropertyRef Name="idSubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskaDb_ToSubjectDb">
+          <End Role="SubjectDb" Type="Self.SubjectDb" Multiplicity="1" />
+          <End Role="TaskaDb" Type="Self.TaskaDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectDb">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TaskaDb">
+              <PropertyRef Name="idSubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OrganazerModelStoreContainer">
+          <EntitySet Name="ScheduleDb" EntityType="Self.ScheduleDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectDb" EntityType="Self.SubjectDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskaDb" EntityType="Self.TaskaDb" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ScheduleDb_ToSubjectDb" Association="Self.FK_ScheduleDb_ToSubjectDb">
+            <End Role="SubjectDb" EntitySet="SubjectDb" />
+            <End Role="ScheduleDb" EntitySet="ScheduleDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskaDb_ToSubjectDb" Association="Self.FK_TaskaDb_ToSubjectDb">
+            <End Role="SubjectDb" EntitySet="SubjectDb" />
+            <End Role="TaskaDb" EntitySet="TaskaDb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OrganazerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ScheduleDb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="dayOfWeek" Type="Int32" Nullable="false" />
+          <Property Name="idSubject" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubjectDb" Relationship="Self.FK_ScheduleDb_ToSubjectDb" FromRole="ScheduleDb" ToRole="SubjectDb" />
+        </EntityType>
+        <EntityType Name="SubjectDb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ScheduleDb" Relationship="Self.FK_ScheduleDb_ToSubjectDb" FromRole="SubjectDb" ToRole="ScheduleDb" />
+          <NavigationProperty Name="TaskaDb" Relationship="Self.FK_TaskaDb_ToSubjectDb" FromRole="SubjectDb" ToRole="TaskaDb" />
+        </EntityType>
+        <EntityType Name="TaskaDb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="attachmensFiles" Type="String" MaxLength="400" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="idSubject" Type="Int32" Nullable="false" />
+          <Property Name="dataFinish" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="SubjectDb" Relationship="Self.FK_TaskaDb_ToSubjectDb" FromRole="TaskaDb" ToRole="SubjectDb" />
+        </EntityType>
+        <Association Name="FK_ScheduleDb_ToSubjectDb">
+          <End Role="SubjectDb" Type="Self.SubjectDb" Multiplicity="1" />
+          <End Role="ScheduleDb" Type="Self.ScheduleDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectDb">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheduleDb">
+              <PropertyRef Name="idSubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskaDb_ToSubjectDb">
+          <End Role="SubjectDb" Type="Self.SubjectDb" Multiplicity="1" />
+          <End Role="TaskaDb" Type="Self.TaskaDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectDb">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TaskaDb">
+              <PropertyRef Name="idSubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OrganazerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ScheduleDb" EntityType="Self.ScheduleDb" />
+          <EntitySet Name="SubjectDb" EntityType="Self.SubjectDb" />
+          <EntitySet Name="TaskaDb" EntityType="Self.TaskaDb" />
+          <AssociationSet Name="FK_ScheduleDb_ToSubjectDb" Association="Self.FK_ScheduleDb_ToSubjectDb">
+            <End Role="SubjectDb" EntitySet="SubjectDb" />
+            <End Role="ScheduleDb" EntitySet="ScheduleDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskaDb_ToSubjectDb" Association="Self.FK_TaskaDb_ToSubjectDb">
+            <End Role="SubjectDb" EntitySet="SubjectDb" />
+            <End Role="TaskaDb" EntitySet="TaskaDb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OrganazerModelStoreContainer" CdmEntityContainer="OrganazerEntities">
+          <EntitySetMapping Name="ScheduleDb">
+            <EntityTypeMapping TypeName="OrganazerModel.ScheduleDb">
+              <MappingFragment StoreEntitySet="ScheduleDb">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dayOfWeek" ColumnName="dayOfWeek" />
+                <ScalarProperty Name="idSubject" ColumnName="idSubject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectDb">
+            <EntityTypeMapping TypeName="OrganazerModel.SubjectDb">
+              <MappingFragment StoreEntitySet="SubjectDb">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskaDb">
+            <EntityTypeMapping TypeName="OrganazerModel.TaskaDb">
+              <MappingFragment StoreEntitySet="TaskaDb">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="attachmensFiles" ColumnName="attachmensFiles" />
+                <ScalarProperty Name="idSubject" ColumnName="idSubject" />
+                <ScalarProperty Name="dataFinish" ColumnName="dataFinish" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

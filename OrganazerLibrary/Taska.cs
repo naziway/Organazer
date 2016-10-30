@@ -1,7 +1,7 @@
 ﻿namespace OrganazerLibrary
 {
-    public class Organazer
+    public class Taska
     {
-         
+        
     }
 }
