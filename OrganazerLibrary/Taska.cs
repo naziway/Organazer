@@ -7,5 +7,9 @@
         public string AttachmensFiles { get; set; }
         public int Subject { get; set; }
         public System.DateTime DataFinish { get; set; }
+        public override string ToString()
+        {
+            return $"{Status} {AttachmensFiles} {DataFinish}";
+        }
     }
 }

@@ -5,8 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Organazer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="651.316" Width="1030.263">
     <Grid>
-        
+        <ListView x:Name="listView" ItemsSource="{Binding Monday ,IsAsync=True }"  HorizontalAlignment="Left" Height="170" Margin="45,50,0,0" VerticalAlignment="Top" Width="150" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.View >
+                <GridView x:Name="fdsr" >
+                    <GridViewColumn Width="150" Header="Понеділок"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="170" Margin="200,50,0,0" VerticalAlignment="Top" Width="150">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" Header="Вівторок"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listView_Copy14" HorizontalAlignment="Left" Height="170" Margin="355,50,0,0" VerticalAlignment="Top" Width="150">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" Header="Середа"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listView_Copy2" HorizontalAlignment="Left" Height="170" Margin="510,50,0,0" VerticalAlignment="Top" Width="150">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" Header="Четвер"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listView_Copy3" HorizontalAlignment="Left" Height="170" Margin="665,50,0,0" VerticalAlignment="Top" Width="150">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" Header="Пятниця"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listView_Copy4" HorizontalAlignment="Left" Height="170" Margin="820,50,0,0" VerticalAlignment="Top" Width="150">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" Header="Субота"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>

@@ -27,7 +27,7 @@ namespace OrganazerLibrary
             var taskasForDay = new List<Taska>();
             using (var organazer = new OrganazerEntities())
             {
-                var subjectInDay = organazer.ScheduleDb.Where(x => x.dayOfWeek == (int)dayOfWeek).ToList();
+                var subjectInDay = organazer.ScheduleDb.ToList();
                 foreach (var subject in subjectInDay)
                 {
                     taskasForDay.AddRange(GetTaskasForSubject(subject.idSubject));
